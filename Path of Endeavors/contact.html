@@ -1,0 +1,178 @@
+<!--PHP functionality commented out as I switched from php to html format-->
+<!-- <?php
+
+//define my email as a constant
+define("EMAIL", "hjn5906@rit.edu");
+
+//checks to see if post has been submitted
+if(isset($_POST['submit']))
+{
+	include('validate.class.php');
+	
+	$name = trim($_POST['name']);
+	$email = trim($_POST['email']);
+	$message = trim($_POST['message']);
+	
+	$v = new validate();
+	$v->validateStr($name, "name", 3, 75);
+	$v->validateEmail($email,"email");
+	$v->validateStr($message, "message", 5, 1000);
+	
+	if(!$v->hasErrors())
+	{
+		$header = "From: $email\n" . "Reply-To: $email\n";
+		$subject = "Contact Form Subject";
+		$email_to = EMAIL;
+		
+		$emailMessage = "Name: " . $name . "\n";
+		$emailMessage .= "Email: " . $email . "\n\n";
+		$emailMessage .= $message . "\n\n";
+		
+		
+		
+		@mail($email_to, $subject, $emailMessage, $header);
+		
+		$thanks = "<p>Thank you for your message!</p>";
+	}
+	
+	else
+	{
+		//set number of errors message
+		$message_text = $v->errorNumMessage();
+		
+		//store errors list in a variable
+		$errors = $v->displayErrors();
+		
+		//get individual error messages
+		$nameErr = $v->getError("name");
+		$emailErr = $v->getError("email");
+		$messageErr = $v->getError("message");	
+	}
+} 
+?> -->
+
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+<meta charset="utf-8"/>
+<title>Path of Endeavours</title>
+<link rel="stylesheet" href="assets/css/960_24_col.css" />
+<link rel="stylesheet" href="assets/css/master.css" />
+</head>
+
+<body>
+	<!--Return Home Navigation -->
+	<nav>
+		<ul id="return">
+			<li>
+				<div class="contact">
+					<a class="home" href="index.html">
+						<span>Home</span>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</nav>
+
+
+	<!--Container -->
+	<div class="container_24" >
+		<!--Header -->
+		<div class="grid_24">
+			<div class="banner">
+				&nbsp;
+			</div>
+		</div>
+		
+		<div class="clear spacer9"></div>
+		
+
+		<!--Row 1 -->
+		
+		<!--Column 1 -->
+		<div class="grid_14">
+			<div class="blockD">
+				<h3>Contact Me</h3>
+				<!-- <?php echo $thanks ?> -->
+				<div class="indent">
+					<!-- <?php echo $message_text; echo $errors; ?> -->
+				</div>
+				<form id="contact_form" method="post" action="contact.html">
+				
+					<div class="indent">
+						<!-- <?php echo $nameErr; ?> -->
+					</div>
+					<p>
+					<label>Name:
+					<br/>
+					<input type="text" name="name" class="textfield" value=""/>
+					</label>
+					</p>
+					
+					<div class="indent">
+						<!-- <?php echo $emailErr; ?> -->
+					</div>
+					<p>
+					<label>Email:
+					<br/>
+					<input type="text" name="email" class="textfield" value=""/>
+					</label>
+					</p>
+					
+					<div class="indent">
+						<!-- <?php echo $messageErr; ?> -->
+					</div>
+					<p>
+					<label>Message:
+					<br/>
+					<textarea name="message" class="textarea" cols="45" rows="5"></textarea>
+					</label>
+					</p>
+					
+					<p><input type="submit" name="submit" class="button" value="submit"/></p>
+				</form>				
+			</div>
+		</div>
+		
+		<!--Empty Space -->
+		<div class="grid_2">&nbsp;</div>
+		
+		<!--Local Navigation-->
+		<nav>
+			<div class="grid_8">
+				<div class="grid_8 alpha omega">
+					<a href="about.html">
+						<div class="border  block1">
+							<h2>About Me</h2>
+						</div>
+					</a>
+				</div>
+				
+				<div class="spacer13"></div>
+				
+				<div class="grid_8 alpha omega">
+					<a href="resume.html">
+						<div class="border  block2">
+							<h2>Resume</h2>
+						</div>
+					</a>
+				</div>
+				
+				<div class="spacer13"></div>
+				
+				<div class="grid_8 alpha omega">
+					<a href="projects.html">
+						<div class="border  block3">
+							<h2>Projects</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+		</nav>
+		
+		
+		<div class="clear spacer10"></div>
+
+	</div>
+</body>
+</html>
